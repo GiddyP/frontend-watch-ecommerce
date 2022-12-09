@@ -15,12 +15,12 @@ module.exports = {
       },
     },
     screens: {
-      xs: "480px",
-      ss: "620px",
-      sm: "768px",
-      md: "1060px",
-      lg: "1200px",
-      xl: "1700px",
+      xs: "480px", /*Xtra Small */
+      ss: "620px", /* small screen */
+      sm: "768px", /* screen mobile */
+      md: "1060px",/* medium devices */
+      lg: "1200px", /* large devices */
+      xl: "1700px", /* Xtra large devices */
     },
   },
   plugins: [],

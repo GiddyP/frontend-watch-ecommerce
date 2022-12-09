@@ -1,37 +1,57 @@
-import styles from './style';
+import { useEffect } from "react";
 import {
-  Billing, Business, CardDeal, Clients, CTA,
-  Footer, Navbar, Stats, Testimonials, Hero
-} from "./components";
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+} from 'react-router-dom';
+import Checkout from "./scenes/checkout/Checkout";
+import Home from "./scenes/home/Home";
+import ItemDetails from "./scenes/itemDetails/ItemDetails";
+import Confirmation from "./scenes/checkout/Confirmation";
+import Navbar from "./scenes/global/Navbar";
+import CartMenu from "./scenes/global/CartMenu";
+import Footer from "./scenes/global/Footer";
+import { ColorModeContext, useMode } from "./theme2";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 
-const App = () => (
-  <div className="bg-primary w-full overflow-hidden">
-    <div className={`${styles.paddingX} ${styles.flexCenter}`}>
-      <div className={`${styles.boxWidth}`}>
-        <Navbar />
-      </div>
-    </div>
 
-    <div className={`bg-primary ${styles.flexStart}`}>
-      <div className={`${styles.boxWidth}`}>
-        <Hero />
-      </div>
-    </div>
+// this helps to take the screen view to top when redirection occurs
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
 
-    <div className={`bg-primary ${styles.paddingX} ${styles.flexStart}`}>
-      <div className={`${styles.boxWidth}`}>
-        <Stats />
-        <Business />
-        <Billing />
-        <CardDeal />
-        <Testimonials />
-        <Clients />
-        <CTA />
-        <Footer />
-      </div>
-    </div>
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
-  </div>
-);
+  return null;
+};
 
-export default App; 
+const App = () => {
+  const [theme, colorMode] = useMode();
+
+  return (
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        {/* This will reset the css to default */}
+        <CssBaseline />
+        <div className="app">
+          <BrowserRouter>
+            <Navbar />
+            <ScrollToTop />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="item/:itemId" element={<ItemDetails />} />
+              <Route path="checkout" element={<Checkout />} />
+              <Route path="checkout/success" element={<Confirmation />} />
+            </Routes>
+            <CartMenu />
+            <Footer />
+          </BrowserRouter>
+        </div>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
+  );
+};
+
+export default App;
