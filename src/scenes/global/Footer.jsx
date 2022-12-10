@@ -2,6 +2,12 @@ import { useTheme } from "@emotion/react";
 import { Box, Divider, IconButton, Typography, useMediaQuery } from "@mui/material";
 import { tokens } from "../../theme2";
 import Subscribe from "../../scenes/home/Subscribe";
+import {
+    Instagram,
+    Facebook,
+    Twitter,
+    Bolt
+} from '@mui/icons-material';
 
 const Footer = () => {
     const theme = useTheme();
@@ -44,7 +50,6 @@ const Footer = () => {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                         eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
                     </Box>
-
                     <Box
                         display="flex"
                         alignItems="center"
@@ -54,12 +59,21 @@ const Footer = () => {
                     >
                         <IconButton
                             sx={{
-                                "&: hover": { cursor: "pointer", color: colors.primary[700] },
+                                "&: hover": { cursor: "pointer", color: colors.primary[600] },
+
+                                color: colors.primary[800],
+                            }}
+                        >
+                            <Instagram fontSize="large" />
+                        </IconButton>
+                        <IconButton
+                            sx={{
+                                "&: hover": { cursor: "pointer", color: colors.primary[600] },
                                 fontSize: "30px",
                                 color: colors.primary[800],
                             }}
                         >
-                            <i className='bx bxl-instagram' ></i>
+                            <Facebook fontSize="large" />
                         </IconButton>
                         <IconButton
                             sx={{
@@ -68,16 +82,7 @@ const Footer = () => {
                                 color: colors.primary[800],
                             }}
                         >
-                            <i className='bx bxl-facebook-circle'></i>
-                        </IconButton>
-                        <IconButton
-                            sx={{
-                                "&: hover": { cursor: "pointer", color: colors.primary[700] },
-                                fontSize: "30px",
-                                color: colors.primary[800],
-                            }}
-                        >
-                            <i class='bx bxl-twitter' ></i>
+                            <Twitter fontSize="large" />
                         </IconButton>
                     </Box>
                 </Box>
@@ -131,17 +136,17 @@ const Footer = () => {
                     orientation="horizontal"
                 />
                 <Typography>Compliance</Typography>
-                <Divider sx={{ height: 28, m: 0.5, backgroundColor: "#827450", }} orientation="" />
+
                 <Typography>Risk warning</Typography>
-                <Divider sx={{ height: 28, m: 0.5, backgroundColor: "#827450", }} orientation="" />
+
                 <Typography>Important Notice</Typography>
-                <Divider sx={{ height: 28, m: 0.5, backgroundColor: "#827450", }} orientation="" />
+
                 <Typography>Investor relations</Typography>
-                <Divider sx={{ height: 28, m: 0.5, backgroundColor: "#827450", }} orientation="" />
+
                 <Typography>Privacy</Typography>
-                <Divider sx={{ height: 28, m: 0.5, backgroundColor: "#827450", }} orientation="" />
+
                 <Typography>Cookie policy</Typography>
-                <Divider sx={{ height: 28, m: 0.5, backgroundColor: "#827450", }} orientation="" />
+
                 <Typography>General business terms</Typography>
                 <Divider
                     sx={{
@@ -154,7 +159,6 @@ const Footer = () => {
                     orientation="horizontal"
                 />
             </Box>
-
 
             <Box
                 display="flex"
@@ -173,9 +177,13 @@ const Footer = () => {
                         display: breakPoint ? "none" : "flex",
                     }}
 
-                    orientation="horizontal"
+                    orientation={"horizontal"}
                 />
-                <span class="footer__copy"><i class='bx bx-bulb'></i> Powered by P_wild</span>
+                <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                ><Bolt fontSize="small" /> Powered by P_wild</Box>
             </Box>
         </Box >
     );

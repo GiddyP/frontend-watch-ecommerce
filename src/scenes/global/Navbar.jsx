@@ -5,6 +5,12 @@ import { Badge, Box, IconButton, Typography, useMediaQuery, useTheme } from "@mu
 import {
   DarkModeOutlined,
   LightModeOutlined,
+  Phone,
+  Email,
+  Watch,
+  Search,
+  ShoppingCart,
+  Menu,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { setIsCartOpen } from "../../state";
@@ -93,41 +99,40 @@ function Navbar() {
         >
           <Box
             onClick={() => navigate("/")}
-            sx={{ "&:hover": { cursor: "pointer", color: "#5d5d5d" } }}
+            sx={{ "&:hover": { cursor: "pointer", color: "#7c7b7b" } }}
             color="#8f8f8f"
             fontWeight="bold"
           >
             <IconButton
               sx={{
-                "&:hover": { cursor: "pointer", backgrounColor: "transparent" },
-                fontSize: "18px",
+                "&:hover": { cursor: "pointer", 
+              },
+              color: "#cccccc",
               }}
             >
-              {/* <Phone />  */}
-              <i className='bx bxs-phone'></i>
+              <Phone />
             </IconButton>
             + 234 9054345432
           </Box>
           <Box
             onClick={() => navigate("/")}
-            sx={{ "&:hover": { cursor: "pointer", color: "#5d5d5d" } }}
+            sx={{ "&:hover": { cursor: "pointer", color: "#7c7b7b" } }}
             color="#8f8f8f"
             fontWeight="600"
           >
             <IconButton
               sx={{
                 "&:hover": { cursor: "pointer" },
-                fontSize: "18px",
+                color: "#cccccc",
               }}
             >
-              <i className='bx bxs-envelope' ></i>
-              {/* <Email />  */}
+              <Email />
             </IconButton>
             vintagestores@gmail.com
           </Box>
           <Box
             onClick={() => navigate("/")}
-            sx={{ "&:hover": { cursor: "pointer", color: "#5d5d5d" } }}
+            sx={{ "&:hover": { cursor: "pointer", color: "#7c7b7b" } }}
             color="#8f8f8f"
             fontWeight="600"
           >
@@ -167,7 +172,7 @@ function Navbar() {
                 mr: "3px",
               }}
             >
-              <i className='bx bxs-watch' ></i>
+              <Watch />
             </IconButton>
             <Box
               display="flex"
@@ -191,9 +196,10 @@ function Navbar() {
                 "&:hover": { cursor: "pointer", color: colors.redAccent[300] },
                 display: smobilePoint ? "none" : "flex",
                 opacity: 0,
+                fontSize: "medium",
               }}
             >
-              <i className='bx bx-search-alt-2' ></i>
+              <Search fontSize="large" />
             </IconButton>
 
             <Badge
@@ -219,7 +225,7 @@ function Navbar() {
                   opacity: "0"
                 }}
               >
-                <i className='bx bx-cart-alt' ></i>
+                <ShoppingCart fontSize="large" />
               </IconButton>
             </Badge>
 
@@ -233,24 +239,23 @@ function Navbar() {
               }}
             >
               {theme.palette.mode === "dark" ? (
-                <DarkModeOutlined />
+                <DarkModeOutlined fontSize="large" />
               ) : (
-                <LightModeOutlined />
+                <LightModeOutlined fontSize="large" />
               )}
             </IconButton>
-            <IconButton
+            {/* <IconButton
               ref={el => { navOption3 = el; }}
               sx={{
                 color: "#8f8f8f",
                 "&:hover": { cursor: "pointer", color: colors.redAccent[300] },
                 opacity: 0,
               }}>
-              <i className='bx bx-menu'></i>
-            </IconButton>
+              <Menu />
+            </IconButton> */}
           </Box>
         </Box>
       </Box>
-
       {/* fixed navbar  */}
       <Box
         backgroundColor={colors.primary[800]}
@@ -296,7 +301,7 @@ function Navbar() {
                 mr: "3px",
               }}
             >
-              <i className='bx bxs-watch' ></i>
+              <Watch />
             </IconButton>
             <Box
               display="flex"
@@ -320,7 +325,7 @@ function Navbar() {
                 display: smobilePoint ? "none" : "flex",
               }}
             >
-              <i className='bx bx-search-alt-2' ></i>
+              <Search />
             </IconButton>
             <Badge
               badgeContent={cart.length}
@@ -343,7 +348,7 @@ function Navbar() {
                   "&:hover": { cursor: "pointer", color: colors.redAccent[300] }
                 }}
               >
-                <i className='bx bx-cart-alt' ></i>
+                <ShoppingCart />
               </IconButton>
             </Badge>
 
@@ -360,13 +365,13 @@ function Navbar() {
                 <LightModeOutlined />
               )}
             </IconButton>
-            <IconButton
+            {/* <IconButton
               sx={{
                 color: colors.primary[200],
                 "&:hover": { cursor: "pointer", color: colors.redAccent[300] }
               }}>
               <i className='bx bx-menu'></i>
-            </IconButton>
+            </IconButton> */}
           </Box>
         </Box>
       </Box>

@@ -1,31 +1,41 @@
 import React, { useEffect, useState } from "react";
+import ScaleLoader from "react-spinners/ScaleLoader";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import Item from "../../components/Item";
-import { Typography, useTheme } from "@mui/material";
+import { Button, Typography, useTheme } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useDispatch, useSelector } from "react-redux";
 import { setItems } from "../../state";
 // console.log(setItems)
 import { tokens } from "../../theme2";
+import { Link } from "react-router-dom";
 
 const ShoppingList = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [value, setValue] = useState("all");
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
   const watchItems = useSelector((state) => state.cart.items);
-  // console.log("🚀watchitems", watchItems.value);
   const smobilePoint = useMediaQuery("(max-width:370px)");
   const breakPoint = useMediaQuery("(min-width:769px)");
-
+  let time = new Date();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+
+    }, 5000);
+  });
 
   async function getItems() {
     const items = await fetch(
@@ -49,25 +59,7 @@ const ShoppingList = () => {
     dispatch(setItems(itemsJson.data));
   }
 
-  // async function getItems2() {
-  //   fetch(
-  //     "http://localhost:1337/api/watch-items?populate=image",
-  //     { method: "GET" }
-  //   ).then(res => {
-  //     console.log(res);
-  //     return res.json();
-  //   })
-  //     .then(data => {
-  //       dispatch(setItems(data));
-  //       setIsPending(false);
-  //     })
-  //     .catch(err => {
-  //       console.log(err.message);
-  //     });
-  // }
-
   useEffect(() => {
-    // getItems2();
     getItems();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -136,19 +128,42 @@ const ShoppingList = () => {
       </Tabs>
       {error && (<Box
         display="flex"
+        height="50vh"
+        flexDirection="column"
         justifyContent="center"
         alignItems="center"
         textAlign="center"
         pt="20px"
-      >There is an error '{error}'...</Box>)}
+        gap="15px"
+      >
+        <Box>{error} - Something went wrong <br /> Try refeshing the page</Box>
+        <a
+          style={{
+            textDecoration: "none",
+            backgroundColor: '#0f3ae6',
+            boxShadow: "none",
+            color: "white",
+            borderRadius: "5px",
+            padding: "10px 30px",
+            "&:hover": { backgroundColor: '#3e64d6', }
+          }}
+          href="http://127.0.0.1:5173/"
+        >
+          Refresh
+        </a>
+      </Box>)}
+
       {isPending && (<Box
+        height="50vh"
         display="flex"
         justifyContent="center"
         alignItems="center"
         pt="20px"
-      >This message is pending...</Box>)}
+      >
+        <ScaleLoader color="#d79736" />
+      </Box>)
+      }
       <Box
-        margin="0 auto"
         display={smobilePoint ? "flex" : "grid"}
         flexDirection="column"
         alignItems="center"
