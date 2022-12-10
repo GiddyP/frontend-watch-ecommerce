@@ -98,7 +98,7 @@ function Navbar() {
           background="rgba(255, 255, 255, 0.05)"
         >
           <Box
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/frontend-watch-ecommerce/")}
             sx={{ "&:hover": { cursor: "pointer", color: "#7c7b7b" } }}
             color="#8f8f8f"
             fontWeight="bold"
@@ -115,7 +115,7 @@ function Navbar() {
             + 234 9054345432
           </Box>
           <Box
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/frontend-watch-ecommerce/")}
             sx={{ "&:hover": { cursor: "pointer", color: "#7c7b7b" } }}
             color="#8f8f8f"
             fontWeight="600"
@@ -131,7 +131,7 @@ function Navbar() {
             vintagestores@gmail.com
           </Box>
           <Box
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/frontend-watch-ecommerce/")}
             sx={{ "&:hover": { cursor: "pointer", color: "#7c7b7b" } }}
             color="#8f8f8f"
             fontWeight="600"
@@ -155,7 +155,7 @@ function Navbar() {
           alignItems="center"
         >
           <Box
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/frontend-watch-ecommerce/")}
             sx={{ "&:hover": { cursor: "pointer" } }}
             color={"#f4a261"}
             display="flex"
@@ -284,7 +284,7 @@ function Navbar() {
           py="10px"
         >
           <Box
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/frontend-watch-ecommerce/")}
             sx={{ "&:hover": { cursor: "pointer" } }}
             color={colors.redAccent[400]}
             display="flex"

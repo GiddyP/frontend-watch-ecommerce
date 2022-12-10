@@ -121,13 +121,13 @@ const Footer = () => {
                 alignItems="center"
                 mt="63px"
                 position="relative"
-                gap="5px"
+                gap="25px"
                 color={colors.primary[800]}
             >
                 <Divider
                     sx={{
                         width: "80%",
-                        m: 0.5,
+                        m: -0.5,
                         position: "absolute",
                         top: "-5px",
                         backgroundColor: "#827450",
@@ -136,22 +136,16 @@ const Footer = () => {
                     orientation="horizontal"
                 />
                 <Typography>Compliance</Typography>
-
                 <Typography>Risk warning</Typography>
-
                 <Typography>Important Notice</Typography>
-
                 <Typography>Investor relations</Typography>
-
                 <Typography>Privacy</Typography>
-
                 <Typography>Cookie policy</Typography>
-
                 <Typography>General business terms</Typography>
                 <Divider
                     sx={{
                         width: "80%",
-                        m: 0.5,
+                        m: -0.5,
                         position: "absolute",
                         bottom: "-5px",
                         backgroundColor: "#827450",

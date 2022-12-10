@@ -88,7 +88,7 @@ const ItemDetails = () => {
             display="flex"
             gap="5px"
             alignItems="center"
-            onClick={() => navigate(`/`)}
+            onClick={() => navigate(`/frontend-watch-ecommerce/`)}
             cursor="pointer"
           >
             <IconButton
