@@ -196,10 +196,9 @@ function Navbar() {
                 "&:hover": { cursor: "pointer", color: colors.redAccent[300] },
                 display: smobilePoint ? "none" : "flex",
                 opacity: 0,
-                fontSize: "medium",
               }}
             >
-              <Search fontSize="large" />
+              <Search />
             </IconButton>
 
             <Badge
@@ -225,7 +224,7 @@ function Navbar() {
                   opacity: "0"
                 }}
               >
-                <ShoppingCart fontSize="large" />
+                <ShoppingCart />
               </IconButton>
             </Badge>
 
@@ -239,9 +238,9 @@ function Navbar() {
               }}
             >
               {theme.palette.mode === "dark" ? (
-                <DarkModeOutlined fontSize="large" />
+                <DarkModeOutlined />
               ) : (
-                <LightModeOutlined fontSize="large" />
+                <LightModeOutlined />
               )}
             </IconButton>
             {/* <IconButton

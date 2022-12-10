@@ -91,13 +91,13 @@ const ShoppingList = () => {
         gap="8px"
       >
         <Typography
-          variant="h2"
+          variant={smobilePoint ? "h3" : "h2"}
         // textAlign="center"  
         >
           Featured
         </Typography>
         <Typography
-          variant="h2"
+          variant={smobilePoint ? "h3" : "h2"}
           fontWeight="bold"
         >Products</Typography>
       </Box>

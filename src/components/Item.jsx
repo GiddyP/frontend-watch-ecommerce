@@ -43,7 +43,7 @@ const Item = ({ item, width }) => {
           width="200px"
           height="290px"
           src={url}
-          onClick={() => navigate(`/item/${item.id}`)}
+          onDoubleClick={() => navigate(`/item/${item.id}`)}
           style={{ cursor: "pointer", objectFit: "contain" }}
         />
         {/* counter and likes */}

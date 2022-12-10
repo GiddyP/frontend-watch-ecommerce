@@ -14,6 +14,7 @@ const ItemDetails = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const mobilePoint = useMediaQuery("(max-width:749px)");
+  const smobilePoint = useMediaQuery("(max-width:370px)");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { itemId } = useParams();
@@ -57,6 +58,32 @@ const ItemDetails = () => {
 
   return (
     <Box width="80%" m="120px auto 80px">
+      <Box
+        display={smobilePoint ? "flex" : "none"}
+        gap="5px"
+        alignItems="center"
+        onClick={() => navigate(`/frontend-watch-ecommerce/`)}
+        cursor="pointer"
+        mb="15px"
+      >
+        <IconButton
+          sx={{
+            width: "0px",
+            height: "0px",
+            "&:hover": { background: "none", transform: "translateX(-5px)", },
+            fontSize: "20px",
+            transition: ".3s"
+          }}
+        >
+          <i className='bx bx-arrow-back'></i>
+        </IconButton>
+        <Typography
+          sx={{
+            cursor: "pointer",
+            justifyContent: "center"
+          }}
+          variant="h5">Home</Typography>
+      </Box>
       <Box display="flex" flexWrap="wrap" columnGap="40px">
         {/* IMAGES */}
         <Box
@@ -85,7 +112,7 @@ const ItemDetails = () => {
           justifyContent="space-around"
         >
           <Box
-            display="flex"
+            display={smobilePoint ? "none" : "flex"}
             gap="5px"
             alignItems="center"
             onClick={() => navigate(`/frontend-watch-ecommerce/`)}
