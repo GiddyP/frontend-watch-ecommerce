@@ -29,14 +29,6 @@ const ShoppingList = () => {
     setValue(newValue);
   };
 
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-
-    }, 5000);
-  });
-
   async function getItems() {
     const items = await fetch(
       "https://strapi-production-c72c.up.railway.app/api/watch-items",
@@ -147,7 +139,7 @@ const ShoppingList = () => {
             padding: "10px 30px",
             "&:hover": { backgroundColor: '#3e64d6', }
           }}
-          href="http://127.0.0.1:5173/"
+          href="https://giddyp.github.io/frontend-watch-ecommerce/"
         >
           Refresh
         </a>
