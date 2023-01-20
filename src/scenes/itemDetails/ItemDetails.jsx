@@ -1,5 +1,4 @@
 import { Box, Button, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
-import ScaleLoader from "react-spinners/ScaleLoader";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { useNavigate, useParams } from "react-router-dom";
@@ -10,10 +9,10 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { addToCart } from "../../state";
 import { useDispatch } from "react-redux";
 import { tokens } from "../../theme2";
-import { ArrowBackIosNew, ArrowCircleLeft } from "@mui/icons-material";
+import { ArrowBackIosNew } from "@mui/icons-material";
 
 const ItemDetails = () => {
-  const theme = useTheme();
+  // const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const mobilePoint = useMediaQuery("(max-width:749px)");
   const smobilePoint = useMediaQuery("(max-width:370px)");
@@ -35,7 +34,7 @@ const ItemDetails = () => {
   async function getItem() {
     const item = await fetch(
 
-      `https://strapi-production-c72c.up.railway.app/api/watch-items/${itemId}`,
+      `http://localhost:1337/api/watch-items/${itemId}`,
       {
         method: "GET",
       }
@@ -58,7 +57,7 @@ const ItemDetails = () => {
 
   async function getItems() {
     const items = await fetch(
-      "https://strapi-production-c72c.up.railway.app/api/watch-items",
+      "http://localhost:1337/api/watch-items",
       { method: "GET" }
     );
     const itemsJson = await items.json();
@@ -77,7 +76,7 @@ const ItemDetails = () => {
       <Box
         display={smobilePoint ? "flex" : "none"}
         gap="5px"
-        alignItems="center"
+        alignItems="center" 
         onClick={() => navigate(`/frontend-watch-ecommerce/`)}
         cursor="pointer"
         mb="15px"

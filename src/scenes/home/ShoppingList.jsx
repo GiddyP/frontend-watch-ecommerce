@@ -12,7 +12,11 @@ import { setItems } from "../../state";
 import { tokens } from "../../theme2";
 import { Link } from "react-router-dom";
 
+import sanityClient from "../../client.js";
+
 const ShoppingList = () => {
+  const [postData, setPostData] = useState(null);
+
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const dispatch = useDispatch();
@@ -29,47 +33,96 @@ const ShoppingList = () => {
     setValue(newValue);
   };
 
-  async function getItems() {
-    const items = await fetch(
-      "https://strapi-production-c72c.up.railway.app/api/watch-items",
-      // "http://localhost:1337/api/watch-items?populate=image",
-      { method: "GET" }
-    )
-      .then(res => {
-        if (!res.ok) {
+  // async function getItems() {
+  //   const items = await fetch(
+  //     // "https://strapi-production-c72c.up.railway.app/api/watch-items",
+  //     "http://localhost:1337/api/watch-items?populate=image",
+  //     { method: "GET" }
+  //   )
+  //     .then(res => {
+  //       if (!res.ok) {
+  //         throw Error('could not fetch the data from backend');
+  //       }
+  //       setError(null);
+  //       return res.json();
+  //     })
+  //     .catch(err => {
+  //       setError(err.message);
+  //       // console.log(err.message);
+  //     });
+  //   setIsPending(false);
+  //   const itemsJson = await items;
+  //   dispatch(setItems(itemsJson.data[0]));
+  //   // console.log(itemsJson);
+  // }
+  // console.log(watchItems)
+
+  function getItems() {
+    sanityClient.fetch(
+      `*[_type == "watchProject"]{
+               id,
+               name,
+               longDesc,
+               shortDesc,
+               price,
+               category,
+               description,
+               imageUrl,
+               reviews,
+              }`).then((data) => {
+        if (data.length == 0) {
           throw Error('could not fetch the data from backend');
+        } else {
+          setError(null);
+          setPostData(data);
         }
-        setError(null);
-        return res.json();
-      })
-      .catch(err => {
+      }).catch(err => {
         setError(err.message);
-        // console.log(err.message);
       });
     setIsPending(false);
-    const itemsJson = await items;
-    dispatch(setItems(itemsJson.data));
+    dispatch(setItems(postData));
   }
+  // console.log(postData);
 
+
+  // useEffect(() => {
+  //   sanityClient.fetch(
+  //     `*[_type == "watchProject"]{
+  //          id,
+  //          name,
+  //          longDesc,
+  //          shortDesc,
+  //          price,
+  //          category,
+  //          description,
+  //          imageUrl,
+  //          reviews,
+  //         }`).then((data) => setPostData(data))
+  //     .catch(console.error);
+  // }, []);// eslint-disable-line react-hooks/exhaustive-deps
+
+  // console.log(postData);
   useEffect(() => {
     getItems();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const recommendedItems = watchItems.filter(
-    (item) => item.attributes.category === "Recommended"
-  );
-  const newArrivalsItems = watchItems.filter(
-    (item) => item.attributes.category === "newArrivals"
-  );
-  const bestPricesItems = watchItems.filter(
-    (item) => item.attributes.category === "bestPrices"
-  );
-  const freeDeliveryItems = watchItems.filter(
-    (item) => item.attributes.category === "freeDelivery"
-  );
-  const topRatedItems = watchItems.filter(
-    (item) => item.attributes.category === "topRated"
-  );
+  // const recommendedItems = watchItems.filter(
+  //   (item) => item.category === "Recommended"
+  // );
+
+  // console.log(recommendedItems)
+  // const newArrivalsItems = watchItems.filter(
+  //   (item) => item.category === "newArrivals"
+  // );
+  // const bestPricesItems = watchItems.filter(
+  //   (item) => item.category === "bestPrices"
+  // );
+  // const freeDeliveryItems = watchItems.filter(
+  //   (item) => item.category === "freeDelivery"
+  // );
+  // const topRatedItems = watchItems.filter(
+  //   (item) => item.category === "topRated"
+  // );
 
   return (
     <Box
@@ -169,29 +222,32 @@ const ShoppingList = () => {
           watchItems.map((item) => (
             <Item item={item} key={`${item.name}-${item.id}`} />
           ))}
-        {value === "recommended" &&
-          recommendedItems.map((item) => (
-            <Item item={item} key={`${item.name}-${item.id}`} />
-          ))}
-        {value === "newArrivals" &&
-          newArrivalsItems.map((item) => (
-            <Item item={item} key={`${item.name}-${item.id}`} />
-          ))}
-        {value === "bestPrices" &&
-          bestPricesItems.map((item) => (
-            <Item item={item} key={`${item.name}-${item.id}`} />
-          ))}
-        {value === "freeDelivery" &&
-          freeDeliveryItems.map((item) => (
-            <Item item={item} key={`${item.name}-${item.id}`} />
-          ))}
-        {value === "topRated" &&
-          topRatedItems.map((item) => (
-            <Item item={item} key={`${item.name}-${item.id}`} />
-          ))}
+       
       </Box>
     </Box>
+    // <div>Heloo</div>
   );
 };
 
 export default ShoppingList;
+
+        // {value === "recommended" &&
+        //   recommendedItems.map((item) => (
+        //     <Item item={item} key={`${item.name}-${item.id}`} />
+        //   ))}
+        // {value === "newArrivals" &&
+        //   newArrivalsItems.map((item) => (
+        //     <Item item={item} key={`${item.name}-${item.id}`} />
+        //   ))}
+        // {value === "bestPrices" &&
+        //   bestPricesItems.map((item) => (
+        //     <Item item={item} key={`${item.name}-${item.id}`} />
+        //   ))}
+        // {value === "freeDelivery" &&
+        //   freeDeliveryItems.map((item) => (
+        //     <Item item={item} key={`${item.name}-${item.id}`} />
+        //   ))}
+        // {value === "topRated" &&
+        //   topRatedItems.map((item) => (
+        //     <Item item={item} key={`${item.name}-${item.id}`} />
+        //   ))}
